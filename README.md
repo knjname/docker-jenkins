@@ -23,7 +23,7 @@ docker run -d -p 8080:8080 knjname/jenkins
 
 ### Parameters
 
-Various parameters are specifiable by specifying ```-e ENVNAME=VALUE```.
+Various parameters are available by specifying ```-e ENVNAME=VALUE```.
 
 This functionality is provided by run.sh. run.sh runs Jenkins with various options given from ENVs.
 
@@ -36,6 +36,24 @@ JENKINS_URL_PREFIX
 
 To learn more parameters, see [a relative link](run.sh).
 
+For instance, to satisfy following requirements:
+
+ * Need 2GB heap.
+ * Nginx redirects /my-jenkins to http://localhost:10080/my-jenkins.
+ * Persist log and other data on /opt/my-jenkins.
+
+This ```docker run``` command helps you.
+
+```
+docker run -d --name my-jenkins \
+  -p 10080:8080 \
+  -e JENKINS_JAVA_OPTIONS='-Djava.awt.headless=true -Xmx2g' \
+  -e JENKINS_URL_PREFIX=/my-jenkins \
+  -v /opt/my-jenkins/logs:/jenkins/logs \
+  -v /opt/my-jenkins/home:/jenkins/home \
+  knjname/jenkins
+```
+
 
 ## Recommended Jenkins configuration
 
@@ -44,5 +62,5 @@ Isolate the roles of master-node and slave-nodes explicitly.
  * Do not allow master-node to build. Make master-node unable to build. Master-node should concentrate on keeping build histories, artifacts, and other things master-node only can do.
  * Insteadly, slave-nodes should build everytime. Prepare and connect slave-nodes having plentiful tools to build. Of course when I do that, I setup a SSHD Docker container.
 
-What this repository provides is a master-node's image. And it doesn't know anything about what actual builds require. That's why you need to split master-node and slave-node.
+While you keep this rule, you can use simple Jenkins container such like what this repository provides.
 
