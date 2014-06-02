@@ -3,7 +3,7 @@ FROM ubuntu:14.04
 MAINTAINER knjname
 
 RUN apt-get update
-RUN apt-get install -y openjdk-7-jdk
+RUN apt-get install -y openjdk-7-jre-headless
 
 RUN mkdir -p /jenkins/bin
 RUN mkdir -p /jenkins/home
