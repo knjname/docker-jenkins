@@ -44,7 +44,7 @@ For instance, to satisfy following requirements:
 
 This ```docker run``` command helps you.
 
-```
+```sh
 docker run -d --name my-jenkins \
   -p 10080:8080 \
   -e JENKINS_JAVA_OPTIONS='-Djava.awt.headless=true -Xmx2g' \
