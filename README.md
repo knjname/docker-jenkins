@@ -34,7 +34,7 @@ JENKINS_JAVA_OPTIONS
 JENKINS_URL_PREFIX
 : Jenkins URL prefix Jetty accepts. For example, if you want to put Jenkins behind a reverse proxy, and the Jenkins has got to accept requests to http://hostname:8080/your-jenkins, you may specify this option as ``` -e JENKINS_URL_PREFIX='/your-jenkins' ```. Please note that in many cases, you have to configure same url prefix additionally on your Jenkins configuration page, which is what Jenkins uses.
 
-To learn more parameters, see [a relative link](run.sh).
+To learn more parameters, see [run.sh](run.sh).
 
 For instance, to satisfy following requirements:
 
